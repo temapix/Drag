@@ -1,0 +1,158 @@
+local watermark = Instance.new("ScreenGui")
+local ScreenLabel = Instance.new("Frame")
+local Color = Instance.new("Frame")
+local UIGradient = Instance.new("UIGradient")
+local Container = Instance.new("Frame")
+local UIPadding = Instance.new("UIPadding")
+local Text = Instance.new("TextLabel")
+local Time = Instance.new("TextLabel")
+local Background = Instance.new("Frame")
+local UIGradient_2 = Instance.new("UIGradient")
+local name2 = Instance.new("TextLabel")
+
+
+
+watermark.Name = "watermark"
+watermark.Parent = game.CoreGui
+watermark.Enabled = true
+
+ScreenLabel.Name = "ScreenLabel"
+ScreenLabel.Parent = watermark
+ScreenLabel.BackgroundColor3 = Color3.fromRGB(191, 62, 255)
+ScreenLabel.BackgroundTransparency = 1.000
+ScreenLabel.BorderColor3 = Color3.fromRGB(20, 20, 20)
+ScreenLabel.Position = UDim2.new(0, 12, 0, 3)
+ScreenLabel.Size = UDim2.new(0, 260, 0, 20)
+
+Color.Name = "Color"
+Color.Parent = ScreenLabel
+Color.BackgroundColor3 = Color3.fromRGB(191, 62, 255)
+Color.BorderSizePixel = 0
+Color.Position = UDim2.new(0.0192307699, 0, 0, 0)
+Color.Size = UDim2.new(0.97, 0, 0, 2)
+Color.ZIndex = 2
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(191, 62, 255)), ColorSequenceKeypoint.new(1, Color3.fromRGB(205, 96, 144))}
+UIGradient.Rotation = 0
+UIGradient.Parent = Color
+
+Container.Name = "Container"
+Container.Parent = ScreenLabel
+Container.BackgroundTransparency = 1.000
+Container.BorderSizePixel = 0
+Container.Position = UDim2.new(0, 0, 0, 4)
+Container.Size = UDim2.new(1, 0, 0, 14)
+Container.ZIndex = 3
+
+UIPadding.Parent = Container
+UIPadding.PaddingLeft = UDim.new(0, 4)
+
+Text.Name = "Text"
+Text.Parent = Container
+Text.BackgroundTransparency = 1.000
+Text.Position = UDim2.new(0.0381064788, 0, 0, 0)
+Text.Size = UDim2.new(0.373076916, 0, 1, 0)
+Text.ZIndex = 4
+Text.Font = Enum.Font.Code
+Text.Text = "meme.shit"
+Text.TextColor3 = Color3.fromRGB(65025, 65025, 65025)
+Text.TextSize = 14.000
+Text.TextStrokeTransparency = 0.000
+Text.TextXAlignment = Enum.TextXAlignment.Left
+
+Time.Name = "Time"
+Time.Parent = Container
+Time.BackgroundTransparency = 1.000
+Time.Position = UDim2.new(0.374206603, 0, 0, 0)
+Time.Size = UDim2.new(0.278875738, 0, 1, 0)
+Time.ZIndex = 4
+Time.Font = Enum.Font.Code
+Time.Text = "00:00:00"
+Time.TextColor3 = Color3.fromRGB(65025, 65025, 65025)
+Time.TextSize = 14.000
+Time.TextStrokeTransparency = 0.000
+Time.TextXAlignment = Enum.TextXAlignment.Left
+
+name2.Name = "name2"
+name2.Parent = Container
+name2.BackgroundTransparency = 1.000
+name2.Position = UDim2.new(0.624206603, 0, 0, 0)
+name2.Size = UDim2.new(0.278875738, 0, 1, 0)
+name2.ZIndex = 4
+name2.Font = Enum.Font.Code
+name2.Text = "duud"
+name2.TextColor3 = Color3.fromRGB(65025, 65025, 65025)
+name2.TextSize = 14.000
+name2.TextStrokeTransparency = 0.000
+name2.TextXAlignment = Enum.TextXAlignment.Left
+
+Background.Name = "Background"
+Background.Parent = ScreenLabel
+Background.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Background.BorderColor3 = Color3.fromRGB(22, 22, 22)
+Background.Position = UDim2.new(0.0192307699, 0, 0, 0)
+Background.Size = UDim2.new(0.97, 0, 1, 0)
+
+local function ZBZX_fake_script() -- Time.LocalScript 
+	local script = Instance.new('LocalScript', Time)
+
+	local mo = "A.M."
+	local mont = nil
+	while wait() do
+		local l = math.fmod(tick(),86400)
+		local h = math.floor(l/3600)
+		local m = math.floor(l/60-h*60)
+		local s = math.floor(math.fmod(l,60))
+		local y = math.floor(1970+tick()/31579200)
+		local mon = {{"January",31,31},{"February",59,28},{"March",90,31},{"April",120,30},{"May",151,31},{"June",181,30},{"July",212,31},{"August",243,31},{"September",273,30},{"October",304,31},{"November",334,30},{"December",365,31}}
+		if y%4 == 0 then
+			mon[2][3] = 29
+			for i,v in pairs(mon) do
+				if i ~= 1 then
+					v[2] = v[2] + 1
+				end
+			end
+		end
+		local d = math.floor(tick()/86400%365.25+1)
+		for i,v in pairs(mon) do
+			if v[2]-v[3]<=d then
+				mont = i
+			end
+		end
+		d = d + mon[mont][3]-mon[mont][2]
+		if m <= 9 then
+			m = "0" ..m
+		end
+		if s <= 9 then
+			s = "0" ..s
+		end
+		if h >= 12 then
+			mo = "P.M."
+		else
+			mo = "A.M."
+		end
+		if h > 12 then
+			h = h - 12
+		end
+		script.Parent.Text = "" ..h.. ":" ..m.. ":" ..s.. " "
+	end
+end
+coroutine.wrap(ZBZX_fake_script)()
+local function POWDOGC_fake_script() -- ScreenLabel.LocalScript 
+	local script = Instance.new('LocalScript', ScreenLabel)
+
+	local gui = script.Parent
+                gui.Draggable = true
+            gui.Active = true
+end
+coroutine.wrap(POWDOGC_fake_script)()
+
+
+local function IPHCOC_fake_script() -- welcome.LocalScript 
+	local script = Instance.new('LocalScript', name2)
+
+	local plr = game.Players.LocalPlayer
+
+	script.Parent.Text = ""..plr.Name.."."
+end
+coroutine.wrap(IPHCOC_fake_script)()
